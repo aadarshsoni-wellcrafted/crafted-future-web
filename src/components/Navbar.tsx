@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Bot } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Services', href: '#services' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'About', href: '#why-us' },
-  { name: 'Blog', href: '#blog' },
+  { name: 'Features', href: '#features' },
+  { name: 'Capabilities', href: '#capabilities' },
+  { name: 'How it works', href: '#how-it-works' },
+  { name: 'Testimonials', href: '#testimonials' },
 ];
 
 export const Navbar = () => {
@@ -44,42 +44,41 @@ export const Navbar = () => {
       <div className="section-container">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-accent flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform duration-300">
-              <span className="text-accent-foreground font-display font-bold text-lg">W</span>
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-glow-sm group-hover:shadow-glow transition-shadow duration-300">
+              <Bot className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-display font-bold text-xl text-foreground">
-              Wellcrafted<span className="text-accent">.</span>
+              WELLCRAFTED
             </span>
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium link-underline"
-              >
-                {link.name}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center">
+            <div className="flex items-center gap-1 px-2 py-1.5 rounded-full border border-border/50 bg-secondary/30">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="px-4 py-2 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all duration-300"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="sm">
-              Contact
-            </Button>
-            <Button variant="hero" size="sm">
-              Let's Build
+          <div className="hidden md:flex items-center">
+            <Button variant="glow" size="sm">
+              Request demo
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 hover:bg-muted rounded-xl transition-colors"
+            className="md:hidden p-2 hover:bg-secondary rounded-xl transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -88,19 +87,19 @@ export const Navbar = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 glass border-t border-border/50 p-6 animate-fade-in">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-foreground font-medium py-2"
+                  className="text-foreground font-medium py-3 px-4 rounded-xl hover:bg-secondary transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
-              <Button variant="hero" className="mt-4">
-                Let's Build
+              <Button variant="glow" className="mt-4">
+                Request demo
               </Button>
             </div>
           </div>

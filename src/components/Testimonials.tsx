@@ -7,47 +7,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "Wellcrafted Tech delivered our DeFi platform ahead of schedule with impeccable security standards. Their expertise in smart contract development is unmatched.",
+    quote: "Wellcrafted Tech deployed our AI agent infrastructure in weeks. The autonomous systems now handle 80% of our operations seamlessly.",
     author: "Sarah Chen",
-    role: "CTO, ChainVault",
-    company: "ChainVault Protocol",
+    role: "CTO",
+    company: "ChainVault",
   },
   {
-    quote: "The AI agent system they built has transformed our operations. We've reduced manual tasks by 80% while improving accuracy. Truly game-changing.",
+    quote: "Their Web3 expertise combined with agentic AI gave us capabilities we didn't think were possible. Game-changing partner.",
     author: "Marcus Williams",
     role: "Head of Operations",
     company: "NeuraCorp",
   },
   {
-    quote: "Working with Wellcrafted felt like an extension of our team. Their deep understanding of Web3 and commitment to quality is exceptional.",
+    quote: "From ideation to production, Wellcrafted guided us through every step. Our platform now serves millions globally.",
     author: "Elena Rodriguez",
     role: "Founder & CEO",
     company: "MetaDAO",
   },
   {
-    quote: "They took our complex requirements and delivered an elegant solution. The zero-knowledge implementation was flawless and ahead of industry standards.",
+    quote: "The zero-knowledge implementation was flawless. Their team understands both the tech and the business implications.",
     author: "David Park",
     role: "Chief Architect",
-    company: "ZeroKnowledge Labs",
+    company: "ZKLabs",
   },
   {
-    quote: "From ideation to deployment, Wellcrafted Tech guided us through every step. Our platform now serves millions of users globally.",
+    quote: "Setup was almost too easy. We had intelligent agents running before our morning standup ended.",
     author: "Aisha Thompson",
     role: "VP Engineering",
-    company: "InFlux Technologies",
-  },
-  {
-    quote: "The team's ability to bridge cutting-edge AI with blockchain technology opened entirely new possibilities for our product roadmap.",
-    author: "James Liu",
-    role: "Product Lead",
-    company: "AgentForge",
+    company: "InFlux",
   },
 ];
 
 export const Testimonials = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -63,7 +56,6 @@ export const Testimonials = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
         },
       }
     );
@@ -74,55 +66,48 @@ export const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 bg-background overflow-hidden">
+    <section id="testimonials" ref={sectionRef} className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="section-container">
-        {/* Header */}
         <div ref={headingRef} className="text-center mb-16">
-          <span className="inline-block text-accent font-semibold text-sm uppercase tracking-widest mb-4">
+          <span className="inline-block text-primary font-semibold text-sm uppercase tracking-widest mb-4">
             Testimonials
           </span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Trusted by <span className="text-gradient">Industry Leaders</span>
+            Trusted by teams <span className="text-gradient">that move fast</span>
           </h2>
           <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Hear from the teams who've partnered with us to build the future.
+            Industry leaders rely on our platform to power their autonomous future.
           </p>
         </div>
       </div>
 
       {/* Auto-scrolling testimonials */}
-      <div ref={marqueeRef} className="relative">
-        {/* First row - scrolling right */}
-        <div className="flex gap-6 mb-6 animate-marquee">
+      <div className="relative">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+        
+        <div className="flex gap-6 animate-marquee">
           {[...testimonials, ...testimonials].map((testimonial, index) => (
             <div
               key={index}
-              className="shrink-0 w-[400px] md:w-[500px] p-8 rounded-2xl bg-gradient-card border border-border/50 shadow-card"
+              className="shrink-0 w-[400px] p-8 rounded-2xl border border-border/50 bg-card"
             >
-              <Quote className="w-8 h-8 text-accent/40 mb-4" />
-              <p className="text-foreground mb-6 text-lg leading-relaxed">
-                "{testimonial.quote}"
-              </p>
+              <Quote className="w-8 h-8 text-primary/40 mb-4" />
+              <p className="text-foreground mb-6 leading-relaxed">"{testimonial.quote}"</p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-accent flex items-center justify-center">
-                  <span className="text-accent-foreground font-semibold">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <span className="text-primary font-semibold text-sm">
                     {testimonial.author.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">{testimonial.author}</div>
-                  <div className="text-sm text-muted-foreground">
-                    {testimonial.role}, {testimonial.company}
-                  </div>
+                  <div className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Gradient overlays */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
